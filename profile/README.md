@@ -2,7 +2,7 @@
 
 ## 0. 评估结论
 
-Yes Steve Avatar 的正确工程目标不是把 OpenYSM 的所有服务端逻辑“魔法式搬到云端”，而是把当前服务端承担的三类职责拆开：
+Yes Steve Avatar 的正确工程目标不是把 OpenYSM/[Yes Steve Model](https://modrinth.com/mod/yes-steve-model) 的所有服务端逻辑“魔法式搬到云端”，而是把当前服务端承担的三类职责拆开：
 
 1. **资产仓库与大文件分发**：可以迁移到独立后端 + OSS/S3 + CDN。
 2. **玩家 Avatar 身份与授权状态**：可以迁移到独立后端，由客户端和可选管理插件共同访问。
@@ -23,7 +23,7 @@ Yes Steve Avatar 的正确工程目标不是把 OpenYSM 的所有服务端逻辑
 
 ### 1.1 SPOF 与 Worker 雪崩
 
-OpenYSM(或 YSM) 当前服务端承担模型扫描、缓存、加密握手、分片传输、授权校验和状态广播。源码中 `ServerModelManager` 直接管理：
+OpenYSM/[Yes Steve Model](https://modrinth.com/mod/yes-steve-model) 当前服务端承担模型扫描、缓存、加密握手、分片传输、授权校验和状态广播。源码中 `ServerModelManager` 直接管理：
 
 - `config/yes_steve_model/built`
 - `config/yes_steve_model/custom`
@@ -592,7 +592,7 @@ AI 辅助方式：
 第一版不要追求“一步到位完全去服务端化”。推荐路线：
 
 1. 先迁移模型资产仓库和大文件传输。
-2. 保留 OpenYSM 成熟的本地解析、渲染、Molang 管线。
+2. 保留 OpenYSM/[Yes Steve Model](https://modrinth.com/mod/yes-steve-model) 成熟的本地解析、渲染、Molang 管线。
 3. 将 Zero-Server 模式定义为公开服兼容模式，接受功能降级。
 4. 将 Bridge 插件定义为完整体验增强组件，而不是核心资产组件。
 5. 版权保护目标从“彻底防复制”调整为“服务端隔离 + 平台防盗刷 + 授权下载 + 审计追责”。
