@@ -1,14 +1,6 @@
 # Yes Steve Avatar 分布式数字身份系统重构计划书
 
-> 版本：v2.0-reevaluated  
-> 依据：OpenYSM 源码实测分析 + 临时架构 Prompt  
-> 说明：未在工作区找到 `YSM指令.md` 与 `后端语言参考.md`，本文以当前 OpenYSM 源码、既有指令形态和用户提供的目标约束为准。  
-> 默认后端：`ysm.aihmc.top`  
-> 安全约束：客户端可自定义后端域名，但协议层强制 HTTPS/WSS，不允许 HTTP/WS 明文降级。  
-
----
-
-## 0. 重新评估结论
+## 0. 评估结论
 
 Yes Steve Avatar 的正确工程目标不是把 OpenYSM 的所有服务端逻辑“魔法式搬到云端”，而是把当前服务端承担的三类职责拆开：
 
@@ -31,7 +23,7 @@ Yes Steve Avatar 的正确工程目标不是把 OpenYSM 的所有服务端逻辑
 
 ### 1.1 SPOF 与 Worker 雪崩
 
-OpenYSM 当前服务端承担模型扫描、缓存、加密握手、分片传输、授权校验和状态广播。源码中 `ServerModelManager` 直接管理：
+OpenYSM(或 YSM) 当前服务端承担模型扫描、缓存、加密握手、分片传输、授权校验和状态广播。源码中 `ServerModelManager` 直接管理：
 
 - `config/yes_steve_model/built`
 - `config/yes_steve_model/custom`
